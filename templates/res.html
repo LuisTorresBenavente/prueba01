@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Carne de Res - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<h2 class="text-3xl font-bold text-center mb-8 text-red-700">Cortes de Res Premium (Vacuno)</h2>
+<p class="text-center text-lg text-gray-600 dark:text-gray-400 mb-10">
+    Selección rigurosa de los mejores criaderos para garantizar la máxima frescura y sabor.
+</p>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/malaya.jpg') }}" alt="Malaya de Res" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Malaya</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 35.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Perfecto para freír o la plancha.</p>
+            <button onclick="agregarAlCarrito(1, 'Malaya de Res', 35)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/pecho.jpg') }}" alt="Pecho de Res" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Pecho</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 45.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Ideal para sopas y caldos.</p>
+            <button onclick="agregarAlCarrito(2, 'Pecho de Res', 45)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/aguja.jpg') }}" alt="Aguja de Res" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Aguja</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 30.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Con grasa, perfecto para parrilla.</p>
+            <button onclick="agregarAlCarrito(3, 'Aguja de Res', 30)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/costilla.jpg') }}" alt="Costilla de Res" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Costilla</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 28.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Ideal para caldos y jugos.</p>
+            <button onclick="agregarAlCarrito(4, 'Costilla de Res', 28)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/cadera.jpg') }}" alt="Cadera de Res" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Cadera</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 38.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Carne magra y suave.</p>
+            <button onclick="agregarAlCarrito(5, 'Cadera de Res', 38)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/lomo.jpg') }}" alt="Lomo Fino" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Lomo Fino</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 55.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">El corte más tierno.</p>
+            <button onclick="agregarAlCarrito(6, 'Lomo Fino', 55)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/bisteck.webp') }}" alt="Bistec" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Bistec</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 32.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Fácil de freír y sazonar.</p>
+            <button onclick="agregarAlCarrito(7, 'Bistec', 32)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/falda.jpg') }}" alt="Falda de Res" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Falda</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 25.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Ideal para desmechar.</p>
+            <button onclick="agregarAlCarrito(8, 'Falda de Res', 25)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/huachalomo.jpg') }}" alt="Huachalomo" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Huachalomo</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 20.00 / Kg</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">Para guisos y estofados.</p>
+            <button onclick="agregarAlCarrito(9, 'Huachalomo', 20)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

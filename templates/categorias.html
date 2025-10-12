@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Categorías - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<h2 class="text-3xl font-bold text-center mb-10 text-gray-800 dark:text-gray-100">Nuestras Categorías</h2>
+
+<div class="space-y-6">
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg">
+        
+        <button onclick="toggleAcordeon('content-tipos_de_carnes')" class="w-full text-left p-4 flex justify-between items-center text-xl font-semibold text-gray-800 dark:text-gray-100">
+            Tipos de Carnes
+            <span id="icon-content-tipos_de_carnes" class="text-red-600 transition-transform duration-300">
+                ▲
+            </span>
+        </button>
+
+        <div id="content-tipos_de_carnes" class="p-4 border-t border-gray-200 dark:border-gray-600">
+            <div class="flex justify-start items-center space-x-8 overflow-x-auto pb-4">
+                
+                <a href="{{ url_for('categoria_res') }}" class="flex-none text-center hover:opacity-80 transition block w-32">
+                    <img src="{{ url_for('static', filename='image/res.jpg') }}" alt="Carne de Res" class="w-full h-32 object-cover rounded-lg shadow-md mx-auto">
+                    <p class="mt-2 font-semibold text-sm text-gray-800 dark:text-gray-200">Carne de Res</p>
+                </a>
+
+                <a href="{{ url_for('categoria_pollo') }}" class="flex-none text-center hover:opacity-80 transition block w-32">
+                    <img src="{{ url_for('static', filename='image/pollo.jpg') }}" alt="Carne de Pollo" class="w-full h-32 object-cover rounded-lg shadow-md mx-auto">
+                    <p class="mt-2 font-semibold text-sm text-gray-800 dark:text-gray-200">Carne de Pollo</p>
+                </a>
+                
+                <a href="{{ url_for('categoria_cerdo') }}" class="flex-none text-center hover:opacity-80 transition block w-32">
+                    <img src="{{ url_for('static', filename='image/cerdo.jpg') }}" alt="Carne de Cerdo" class="w-full h-32 object-cover rounded-lg shadow-md mx-auto">
+                    <p class="mt-2 font-semibold text-sm text-gray-800 dark:text-gray-200">Carne de Cerdo</p>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg">
+        <button onclick="toggleAcordeon('content-utensilios')" class="w-full text-left p-4 flex justify-between items-center text-xl font-semibold text-gray-800 dark:text-gray-100">
+            Utensilios
+            <span id="icon-content-utensilios" class="text-red-600 transition-transform duration-300">
+                ▼
+            </span>
+        </button>
+        
+        <div id="content-utensilios" class="hidden p-4 border-t border-gray-200 dark:border-gray-600">
+            <div class="flex justify-start items-center space-x-8 overflow-x-auto pb-4">
+                        <a href="{{ url_for('productos_carnes') }}#cuchillos" class="flex-none text-center hover:opacity-80 transition block w-32">
+                    <img src="{{ url_for('static', filename='image/cuchillo.jpg') }}" alt="Cuchillos" class="w-full h-32 object-cover rounded-lg shadow-md mx-auto">
+                    <p class="mt-2 font-semibold text-sm text-gray-800 dark:text-gray-200">Cuchillos</p>
+                </a>
+                        <a href="{{ url_for('productos_carnes') }}#sartenes" class="flex-none text-center hover:opacity-80 transition block w-32">
+                    <img src="{{ url_for('static', filename='image/sarten.jpg') }}" alt="Sartenes" class="w-full h-32 object-cover rounded-lg shadow-md mx-auto">
+                    <p class="mt-2 font-semibold text-sm text-gray-800 dark:text-gray-200">Sartenes</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    // JavaScript para el funcionamiento de los acordeones
+    function toggleAcordeon(contentId) {
+        const content = document.getElementById(contentId);
+        const iconElement = document.getElementById('icon-' + contentId);
+        
+        // 1. Ocultar todos los contenidos del acordeón
+        // Esto asegura que solo uno esté abierto a la vez (si aplica)
+        const allContent = document.querySelectorAll('.bg-white > div:last-child, .dark\\:bg-gray-700 > div:last-child');
+        const allIcons = document.querySelectorAll('.bg-white > button > span, .dark\\:bg-gray-700 > button > span');
+
+        allContent.forEach(item => {
+            // Si el ID no coincide, asegúrate de ocultarlo
+            if (item.id !== contentId) {
+                 item.classList.add('hidden');
+            }
+        });
+        
+        allIcons.forEach(iconElement => {
+            // Restablece todos los iconos a flecha hacia abajo
+            iconElement.textContent = '▼'; 
+        });
+
+        // 2. Toggle (mostrar/ocultar) el div seleccionado
+        content.classList.toggle('hidden');
+        
+        // 3. Actualiza el ícono del elemento seleccionado
+        if (content.classList.contains('hidden')) {
+            iconElement.textContent = '▼'; 
+        } else {
+            iconElement.textContent = '▲'; 
+        }
+    }
+    
+    // Configuración inicial: Asegúrate de que Tipos de Carnes se muestre y Utensilios esté oculto al cargar.
+    document.addEventListener('DOMContentLoaded', () => {
+        const tiposCarnes = document.getElementById('content-tipos_de_carnes');
+        const utensilios = document.getElementById('content-utensilios');
+
+        // Por si acaso, inicializamos el estado
+        tiposCarnes.classList.remove('hidden');
+        utensilios.classList.add('hidden');
+
+        document.getElementById('icon-content-tipos_de_carnes').textContent = '▲';
+        document.getElementById('icon-content-utensilios').textContent = '▼';
+    });
+</script>
+
+{% endblock %}

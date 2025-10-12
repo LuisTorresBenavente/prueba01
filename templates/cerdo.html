@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Carne de Cerdo - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<h2 class="text-3xl font-bold text-center mb-8 text-red-700">Nuestros Mejores Cortes de Cerdo</h2>
+<p class="text-center text-lg text-gray-600 dark:text-gray-400 mb-10">
+    Cerdo fresco, con la grasa justa para un sabor inolvidable en tus chicharrones o asados.
+</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/cerdo.jpg') }}" alt="Chicharrón de Cerdo" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Lomo de cerdo</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 25.00 / Kg</p>
+            <button onclick="agregarAlCarrito(20, 'Chicharron de Cerdo', 25)" class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+{% endblock %}

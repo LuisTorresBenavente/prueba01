@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Todos para Asar - Carnicería Pochito{% endblock %}
+{% block content %}
+
+<h2 class="text-3xl font-bold text-center mb-8 text-red-700">Utensilios Esenciales para la Parrilla y Cocina</h2>
+<p class="text-center text-lg text-gray-600 dark:text-gray-400 mb-10">
+    Encuentra los accesorios perfectos para manejar y preparar nuestros cortes premium.
+</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+    <div id="cuchillos" class="col-span-full border-b pb-4 mb-4">
+        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 border-l-4 border-red-600 pl-3 mt-4">Cuchillos y Hachas</h3>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/cuchillo.jpg') }}" alt="Cuchillo de Chef" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Cuchillo de Chef 8"</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 85.00</p>
+            <button onclick="agregarAlCarrito(30, 'Cuchillo de Chef', 85)" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+
+    <div id="sartenes" class="col-span-full border-b pb-4 mb-4">
+        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 border-l-4 border-red-600 pl-3 mt-4">Sartenes y Ollas</h3>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/sarten.jpg') }}" alt="Sartén de Hierro" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Sartén de Hierro</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 150.00</p>
+            <button onclick="agregarAlCarrito(31, 'Sartén de Hierro', 150)" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+    <div id="asado" class="col-span-full border-b pb-4 mb-4">
+        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 border-l-4 border-red-600 pl-3 mt-4">Pinzas y Tenedores</h3>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden text-center transition hover:shadow-2xl">
+        <img src="{{ url_for('static', filename='image/tenedor.jpg') }}" alt="Tenedor para Asado" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Tenedor para Asado</h4>
+            <p class="text-gray-600 dark:text-gray-400 mt-1">S/. 45.00</p>
+            <button onclick="agregarAlCarrito(32, 'Tenedor para Asado', 45)" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-800 transition">
+                Agregar al carrito
+            </button>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

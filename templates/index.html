@@ -1,0 +1,434 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Carnicería Pochito{% endblock %}
+
+{% block content %}
+
+
+
+<section class="relative w-full h-[460px] overflow-hidden mb-12 -mx-6">
+
+        <img src="{{ url_for('static', filename='image/fachada_carniceria.jpg') }}" alt="Fachada de Carnicería Pochito"
+        class="w-full h-full object-cover">
+
+
+
+        <div
+        class="absolute inset-0 bg-gradient-to-r from-black/40 to-black/10 flex flex-col justify-center items-center">
+
+                <div class="text-center max-w-3xl px-6">
+
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">POCHITO</h2>
+
+                        <p class="mt-4 text-white/90">Los mejores cortes frescos, directo a tu mesa.</p>
+
+                        <a href="{{ url_for('productos_carnes') }}"
+                class="mt-6 inline-block btn-primary px-8 py-3 text-lg font-semibold rounded-lg shadow-xl">
+
+                                VER PRODUCTOS
+
+                            </a>
+
+                    </div>
+
+            </div>
+
+</section>
+
+
+
+<section class="p-4">
+
+        <h3 class="text-2xl font-bold text-center mb-8">Nuestros cortes más pedidos</h3>
+
+       
+
+        <div class="flex justify-center gap-4 overflow-hidden">
+
+                <img src="{{ url_for('static', filename='image/malaya.jpg') }}"
+            class="w-64 h-64 object-cover rounded-lg card-soft" alt="Malaya">
+
+                <img src="{{ url_for('static', filename='image/aguja.jpg') }}"
+            class="w-64 h-64 object-cover rounded-lg card-soft" alt="Aguja">
+
+                <img src="{{ url_for('static', filename='image/lomo.jpg') }}"
+            class="w-64 h-64 object-cover rounded-lg card-soft" alt="Lomo">
+
+            </div>
+
+       
+
+        <div class="text-center mt-6">
+
+                <a href="{{ url_for('productos_carnes') }}" class="inline-block btn-primary px-6 py-2 rounded-lg">
+
+                        VER TODOS
+
+                    </a>
+
+            </div>
+
+</section>
+
+
+
+---
+
+
+
+<section class="p-4 mt-12 relative">
+
+        <h3 class="text-2xl font-bold text-center mb-8">Otros productos</h3>
+
+       
+
+        <div id="carrusel-productos" class="flex overflow-x-scroll scroll-smooth snap-x snap-mandatory space-x-6 pb-4">
+
+
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/malaya.jpg') }}" alt="Malaya"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Malaya</h4>
+
+                                <p class="text-gray-600">S/. 30.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(1, 'Malaya', 30)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+               
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/falda.jpg') }}" alt="Falda"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Falda</h4>
+
+                                <p class="text-gray-600">S/. 22.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(2, 'Falda', 22)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+               
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/aguja.jpg') }}" alt="Aguja"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Aguja</h4>
+
+                                <p class="text-gray-600">S/. 24.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(3, 'Aguja', 24)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+               
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/lomo.jpg') }}" alt="Lomo"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Lomo</h4>
+
+                                <p class="text-gray-600">S/. 35.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(4, 'Lomo', 35)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/costilla.jpg') }}" alt="Costilla"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Costilla</h4>
+
+                                <p class="text-gray-600">S/. 28.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(5, 'Costilla', 28)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+               
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/cadera.jpg') }}" alt="Cadera"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Cadera</h4>
+
+                                <p class="text-gray-600">S/. 25.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(6, 'Cadera', 25)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/huachalomo.jpg') }}" alt="Huachalomo"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Huachalomo</h4>
+
+                                <p class="text-gray-600">S/. 23.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(7, 'Huachalomo', 23)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/pecho.jpg') }}" alt="Pecho"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Pecho</h4>
+
+                                <p class="text-gray-600">S/. 18.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(8, 'Pecho', 18)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+
+
+                <div
+            class="flex-none snap-start min-w-[280px] bg-white rounded-xl card-soft overflow-hidden text-center">
+
+                        <img src="{{ url_for('static', filename='image/bisteck.webp') }}" alt="Bisteck"
+                class="w-full h-40 object-cover">
+
+                        <div class="p-4">
+
+                                <h4 class="text-lg font-semibold">Bisteck</h4>
+
+                                <p class="text-gray-600">S/. 32.00 / Kg</p>
+
+                                <button onclick="agregarAlCarrito(9, 'Bisteck', 32)"
+                    class="mt-3 btn-primary px-4 py-2 rounded-lg">
+
+                                        Agregar
+
+                                    </button>
+
+                            </div>
+
+                    </div>
+
+               
+
+            </div>
+
+
+
+        <button onclick="scrollCarrusel(-1)"
+        class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition duration-150 z-10 hidden sm:block">
+
+                &lt;
+
+            </button>
+
+        <button onclick="scrollCarrusel(1)"
+        class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition duration-150 z-10 hidden sm:block">
+
+                &gt;
+
+            </button>
+
+</section>
+
+
+
+---
+
+
+
+<h3 class="text-xl font-bold text-center mt-12">Más productos para ti</h3>
+
+
+
+<script>
+
+    // Lógica para el desplazamiento manual al hacer clic en las flechas
+
+    function scrollCarrusel(direction) {
+
+        const carrusel = document.getElementById('carrusel-productos');
+
+        // El desplazamiento es de 300px, suficiente para mover un producto
+
+        const scrollAmount = 300;
+
+
+
+        carrusel.scrollBy({
+
+            left: direction * scrollAmount,
+
+            behavior: 'smooth'
+
+        });
+
+    }
+
+
+
+    // --- CÓDIGO OPCIONAL PARA MOVIMIENTO AUTOMÁTICO (AUTOPLAY) ---
+
+    /*
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const carrusel = document.getElementById('carrusel-productos');
+
+        const scrollAmount = 300;
+
+        const numItems = carrusel.children.length;
+
+        let currentIndex = 0;
+
+
+
+        function autoScroll() {
+
+            const scrollPosition = currentIndex * 300;
+
+
+
+            carrusel.scrollTo({
+
+                left: scrollPosition,
+
+                behavior: 'smooth'
+
+            });
+
+
+
+            currentIndex = (currentIndex + 1) % numItems;
+
+           
+
+            if (currentIndex === 0) {
+
+                 carrusel.scrollTo({
+
+                    left: 0,
+
+                    behavior: 'smooth'
+
+                });
+
+            }
+
+        }
+
+
+
+        // Inicia el desplazamiento automático cada 4 segundos (4000 milisegundos)
+
+        // setInterval(autoScroll, 4000);
+
+    });
+
+    */
+
+</script>
+
+
+
+{% endblock %}
