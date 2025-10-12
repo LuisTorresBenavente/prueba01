@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Únete a la Familia Angello{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* Use la imagen estática ubicada en static/img/formulariofondo.jpg como fondo.
+     Si aún no existe, coloca la imagen en esa ruta o cambia la ruta según corresponda. */
+  .page-bg {
+    background-image: url("{{ url_for('static', filename='img/formulario/fondo.png') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+  }
+
+  .overlay-dark {
+    background: rgba(0,0,0,0.45);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-panel {
+    background: rgba(0,0,0,0.6);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    max-width: 720px;
+    margin: 2rem auto;
+  }
+
+  /* Ajustes responsivos menores se apoyan en Tailwind (ya cargado en base.html) */
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-bg">
+  <div class="overlay-dark">
+
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-40 text-white shadow-lg sticky top-0 z-50">
+        <div class="flex items-center space-x-4">
+            <a href="{{ url_for('inicio') }}" class="flex items-center space-x-2 text-lg font-bold">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="h-10 w-10 rounded-full border-2 border-orange-500">
+                <span>Angello</span>
+            </a>
+            <a href="{{ url_for('inicio') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Inicio</a>
+            <a href="{{ url_for('cartas') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Nuestra Historia</a>
+            <a href="{{ url_for('formulario') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Delivery</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="{{ url_for('formulario') }}" class="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500 hover:text-white transition-colors">Reservaciones</a>
+            <a href="{{ url_for('formulario') }}" class="px-4 py-2 bg-orange-700 text-white rounded-lg hover:bg-orange-600 transition-colors">Suscríbete</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex items-center justify-center p-8">
+        <div class="card-panel text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">RECIBE OFERTAS EXCLUSIVAS</h2>
+            <p class="text-lg text-gray-200 mb-6">Sé el primero en conocer nuestros eventos especiales y promociones.</p>
+
+            <form action="{{ url_for('formulario') }}" method="POST" class="space-y-4">
+                <input type="text" name="nombre" placeholder="NOMBRES" class="w-full p-3 rounded-md bg-gray-800 border border-orange-500 text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-400 focus:border-transparent" required>
+                <input type="text" name="apellidos" placeholder="APELLIDOS" class="w-full p-3 rounded-md bg-gray-800 border border-orange-500 text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-400 focus:border-transparent" required>
+                <input type="text" name="dni" placeholder="DNI" class="w-full p-3 rounded-md bg-gray-800 border border-orange-500 text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-400 focus:border-transparent" required>
+                <input type="email" name="correo" placeholder="CORREO" class="w-full p-3 rounded-md bg-gray-800 border border-orange-500 text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-400 focus:border-transparent" required>
+                <input type="tel" name="telefono" placeholder="TELEFONO" class="w-full p-3 rounded-md bg-gray-800 border border-orange-500 text-white placeholder-gray-400 focus:ring-2 focus:ring-orange-400 focus:border-transparent" required>
+
+                <button type="submit" class="w-full py-3 mt-4 bg-red-600 hover:bg-red-500 text-white font-bold rounded-lg text-xl transition-colors">ÚNETE AHORA</button>
+            </form>
+
+            <p class="text-sm text-gray-300 mt-4">Tu información es privada y no compartida</p>
+        </div>
+    </main>
+
+    <footer class="p-4 bg-black bg-opacity-40 text-white text-center flex justify-end items-center space-x-4">
+        <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="px-4 py-2 bg-orange-800 hover:bg-orange-700 text-white rounded-lg transition-colors">Informes y pedidos</a>
+        <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="text-green-500 hover:text-green-400">
+            <img src="{{ url_for('static', filename='img/inicio/whatsapp.png') }}" alt="WhatsApp" class="h-8 w-8">
+        </a>
+        <a href="https://facebook.com/tupagina" target="_blank" class="text-blue-600 hover:text-blue-500">
+            <img src="{{ url_for('static', filename='img/inicio/facebook.png') }}" alt="Facebook" class="h-8 w-8">
+        </a>
+    </footer>
+
+  </div>
+</div>
+
+{% endblock %}
