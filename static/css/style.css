@@ -1,0 +1,59 @@
+/* Extraído de templates/base.html */
+:root{
+    --bg: #f7f7f7;
+    --primary: #ef4444; /* red-500 */
+    --accent-start: #fda4af; /* pink-300 */
+    --accent-end: #dc2626; /* red-600 */
+    --muted: #6b7280;
+    --card: #ffffff;
+    --text: #111827;
+}
+/* Dark mode variables (override when body has .dark) */
+body.dark{
+    --bg: #000000;
+    --card: #0b0b0b;
+    --text: #ffffff;
+    --muted: #cbd5e1;
+    --accent-start: #ef4444;
+    --accent-end: #f97316;
+}
+
+html,body{font-family: 'Poppins', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: var(--bg); color: var(--text);} 
+.toggle-switch { position: relative; display: inline-block; width: 50px; height: 24px; background-color: #e5e7eb; border-radius: 20px; cursor: pointer; transition: background-color 0.3s; border: 1px solid #d1d5db; }
+.toggle-switch.dark { background-color: #334155; border: 1px solid #475569; }
+.toggle-switch::after { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background-color: white; top: 1px; left: 1px; transition: transform 0.3s; }
+.toggle-switch.active::after { transform: translateX(26px); }
+/* Header / footer tweaks */
+header.site-header{ background: var(--card); border-bottom: 1px solid rgba(226,232,240,0.6); }
+.site-logo{ color: var(--primary); letter-spacing: 0.6px; }
+nav .nav-link{ color: #374151; padding: .6rem .5rem; transition: color .15s; }
+nav .nav-link:hover{ color: var(--primary); }
+footer.site-footer{ background: linear-gradient(180deg,#0f1724,#020617); color: #e6edf3; }
+.card-soft{ background: var(--card); border-radius: 12px; box-shadow: 0 6px 18px rgba(15,23,42,0.06); }
+.btn-primary{ background: linear-gradient(90deg,var(--accent-start),var(--accent-end)); color: white; }
+/* responsive small tweaks */
+@media (max-width:640px){ .site-logo{ font-size:1.25rem } }
+
+/* Forzar color de letra según modo: negro en light, blanco en dark */
+body.light * {
+    color: #000000 !important;
+}
+body.dark * {
+    color: #ffffff !important;
+}
+
+/* Asegurar que botones primarios mantengan texto blanco */
+.btn-primary, .btn-primary * {
+    color: #ffffff !important;
+}
+
+/* En modo claro queremos que el pie de página mantenga texto blanco para buen contraste */
+body.light footer.site-footer,
+body.light footer.site-footer * {
+    color: #ffffff !important;
+}
+
+/* Asegurar enlaces en footer en modo claro */
+body.light footer.site-footer a {
+    color: #ffffff !important;
+}

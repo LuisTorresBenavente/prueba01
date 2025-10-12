@@ -1,15 +1,24 @@
 {
-  "name": "team12",
+  "name": "prueba01",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mejoras aplicadas:",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuisTorresBenavente/prueba01.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@tailwindcss/cli": "^4.1.13"
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LuisTorresBenavente/prueba01/issues"
+  },
+  "homepage": "https://github.com/LuisTorresBenavente/prueba01#readme",
+  "dependencies": {
+    "tailwindcss": "4.1"
   }
 }
