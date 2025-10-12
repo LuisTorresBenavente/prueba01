@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Restaurante Angello{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+<!-- Fuente decorativa para títulos -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="inicio-hero min-h-screen bg-main bg-inicio flex flex-col">
+    <nav class="flex justify-between items-center p-4 bg-black bg-opacity-50 text-white shadow-lg sticky top-0 z-50">
+        <div class="flex items-center space-x-4">
+            <a href="{{ url_for('inicio') }}" class="flex items-center space-x-2 text-lg font-bold">
+                <img src="{{ url_for('static', filename='img/inicio/logo.png') }}" alt="Logo Angello" class="h-10 w-10 rounded-full border-2 border-orange-500">
+                <span>Angello</span>
+            </a>
+            <a href="{{ url_for('inicio') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Inicio</a>
+            <a href="{{ url_for('cartas') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Nuestra Carta</a>
+            <a href="{{ url_for('historia') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Nuestra Historia</a>
+            <a href="{{ url_for('formulario') }}" class="px-3 py-2 hover:text-orange-500 transition-colors">Delivery</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="{{ url_for('formulario') }}" class="px-4 py-2 border-2 border-orange-500 text-orange-500 rounded-lg hover:bg-orange-500 hover:text-white transition-colors">Reservaciones</a>
+            <a href="{{ url_for('formulario') }}" class="px-4 py-2 bg-orange-700 text-white rounded-lg hover:bg-orange-600 transition-colors">Suscríbete</a>
+        </div>
+    </nav>
+
+    <div class="hero-content container mx-auto flex flex-col md:flex-row items-center justify-center py-12 px-6">
+        <!-- Imagen principal a la izquierda -->
+        <div class="hero-image w-full md:w-1/2 flex items-center justify-center mb-8 md:mb-0">
+            <div class="plate-frame">
+                <img src="{{ url_for('static', filename='img/inicio/inicio.jpg') }}" alt="Pasta Angello" class="object-cover w-full h-full">
+            </div>
+        </div>
+
+        <!-- Tarjeta crema a la derecha -->
+        <div class="hero-card w-full md:w-1/2 md:pl-12">
+            <div class="card-inner bg-cream p-8 md:p-12 rounded-sm shadow-lg max-w-lg">
+                <h1 class="hero-title text-3xl md:text-4xl font-medium mb-4">Nuestros horarios de atención</h1>
+                <p class="hero-sub text-xl mb-2">Martes a Domingo</p>
+                <p class="hero-sub text-xl mb-6">2pm hasta las 11pm</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="p-4 bg-black bg-opacity-50 text-white text-center flex justify-end items-center space-x-4">
+        <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="px-4 py-2 bg-orange-800 hover:bg-orange-700 text-white rounded-lg transition-colors">Informes y pedidos</a>
+        <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="text-green-500 hover:text-green-400">
+            <img src="{{ url_for('static', filename='img/inicio/whatsapp.png') }}" alt="WhatsApp" class="h-8 w-8">
+        </a>
+        <a href="https://facebook.com/tupagina" target="_blank" class="text-blue-600 hover:text-blue-500">
+            <img src="{{ url_for('static', filename='img/inicio/facebook.png') }}" alt="Facebook" class="h-8 w-8">
+        </a>
+    </footer>
+</div>
+{% endblock %}
