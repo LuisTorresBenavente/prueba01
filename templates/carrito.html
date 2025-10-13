@@ -1,18 +1,18 @@
 {% extends "base.html" %}
+
 {% block title %}Carrito - Carnicería Pochito{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/carrito.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
+<section class="flex flex-col items-center justify-center flex-grow px-4 py-10">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Carrito de Compras</h1>
+    <p class="text-gray-600">Tu carrito está vacío 🛒</p>
+</section>
+{% endblock %}
 
-<h2 class="text-2xl font-bold mb-6 text-center">Tu Carrito</h2>
-
-<div id="carrito-lista" class="bg-white p-4 rounded-xl shadow-md">
-  <p class="text-gray-500">El carrito está vacío.</p>
-</div>
-
-<a href="{{ url_for('pago') }}" 
-   class="mt-6 inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-800">
-   Proceder al pago
-</a>
-
+{% block extra_js %}
 <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
-
 {% endblock %}

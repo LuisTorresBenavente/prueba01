@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Carne de Res / Vacuno - Carnicería Pochito{% endblock %}
+
+{% block content %}
+<section class="bg-gray-800 text-white py-16 text-center shadow-lg">
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+        Carne de Res / Vacuno
+    </h1>
+</section>
+
+<section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-100">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        {% for producto in productos %}
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl product-card">
+            <img src="{{ producto.imagen }}"
+                 alt="{{ producto.nombre }}" 
+                 class="w-full h-56 object-cover">
+            
+            <div class="p-5 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">{{ producto.nombre }}</h3>
+                <p class="text-2xl font-extrabold text-red-600 mb-2">S/. {{ "%.2f"|format(producto.precio) }}</p>
+                <p class="text-sm text-gray-600 mb-4">{{ producto.descripcion }}</p>
+                <button class="bg-red-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105">
+                    Agregar
+                </button>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+.registro-container {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-invalid {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 1px #ef4444 !important;
+}
+
+.error-text {
+    color: #ef4444;
+    font-size: 0.875rem;
+}

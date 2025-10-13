@@ -2,9 +2,12 @@
 {% block title %}Pago - Carnicería Pochito{% endblock %}
 {% block content %}
 
+
 <h2 class="text-2xl font-bold mb-6 text-center">Finalizar Compra</h2>
 
+
 <div id="payment-grid" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
 
   <!-- Tarjeta visual -->
   <div id="card-preview" class="order-1 md:order-1">
@@ -13,6 +16,7 @@
         <div class="w-12 h-12 bg-white/20 rounded-full"></div>
         <div class="text-sm opacity-90">Válido hasta</div>
       </div>
+
 
       <div class="mt-2">
         <div class="text-lg tracking-widest font-mono card-number">1234 5678 9012 3456</div>
@@ -28,13 +32,16 @@
         </div>
       </div>
 
+
       <div class="absolute -bottom-6 right-6 w-24 h-24 bg-white/10 rounded-lg blur-sm" aria-hidden="true"></div>
     </div>
   </div>
 
+
   <!-- Formulario -->
   <div class="order-2 md:order-2">
     <form id="payment-form" class="bg-white p-6 rounded-xl shadow-md">
+
 
       <label class="block mb-2 font-semibold">Método de pago</label>
       <select id="method" class="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-red-300">
@@ -43,12 +50,15 @@
         <option value="cod">Contra entrega</option>
       </select>
 
+
       <div id="card-fields">
         <label class="block mb-2">Titular de la tarjeta</label>
         <input id="card-name" type="text" placeholder="Nombre en la tarjeta" class="w-full p-2 border rounded mb-3 focus:outline-none focus:ring-2 focus:ring-red-300">
 
+
         <label class="block mb-2">Número de tarjeta</label>
         <input id="card-number" type="text" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" class="w-full p-2 border rounded mb-3 font-mono tracking-widest focus:outline-none focus:ring-2 focus:ring-red-300">
+
 
         <div class="flex gap-4">
           <div class="flex-1">
@@ -62,18 +72,22 @@
         </div>
       </div>
 
+
       <button type="submit" class="w-full mt-2 inline-block bg-gradient-to-r from-red-500 to-pink-500 text-white py-3 rounded-lg font-bold hover:from-red-600 hover:to-pink-600 transition">
         Pagar ahora
       </button>
     </form>
   </div>
 
+
 </div>
+
 
 <!-- Panel profesional para Yape: diseño inspirado en la imagen 2 -->
 <div id="yape-panel" class="max-w-5xl mx-auto mt-10" style="display:none">
   <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
     <div class="grid grid-cols-1 md:grid-cols-2">
+
 
       <!-- Columna izquierda: QR en carta blanca centrada -->
       <div class="p-8 flex items-center justify-center bg-transparent">
@@ -82,24 +96,30 @@
         </div>
       </div>
 
+
       <!-- Columna derecha: texto, número y CTA -->
       <div class="p-8 flex flex-col justify-center">
         <h3 class="text-2xl font-semibold mb-2 text-gray-800">Paga con Yape / Plin</h3>
         <p class="text-gray-600 mb-4">Escanea el código QR con tu app Yape o Plin, o envía el importe al número:</p>
 
+
         <p class="text-3xl font-extrabold text-gray-900 mb-6">+51 987 654 321</p>
+
 
         <div class="flex gap-4 items-center">
           <button id="confirm-yape" class="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-lg font-bold shadow hover:from-red-600 hover:to-pink-600 transition">He pagado</button>
           <button id="cancel-yape" class="px-4 py-3 border rounded-lg text-gray-700 hover:bg-gray-50">Volver</button>
         </div>
 
+
         <p class="text-sm text-gray-500 mt-4">Una vez enviado el pago, pulsa "He pagado" y confirma para completar tu pedido.</p>
       </div>
+
 
     </div>
   </div>
 </div>
+
 
 <script>
   // Pequeña lógica para vista previa de la tarjeta y validación básica
@@ -111,22 +131,27 @@
     const method = document.getElementById('method');
   const cardPreview = document.getElementById('card-preview');
 
+
     const elName = document.querySelector('.card-name');
     const elNumber = document.querySelector('.card-number');
     const elExpiry = document.querySelector('.card-expiry');
 
+
     function formatCardNumber(value){
       return value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim();
     }
+
 
     cardNumber.addEventListener('input', (e)=>{
       e.target.value = formatCardNumber(e.target.value).slice(0,19);
       elNumber.textContent = e.target.value || '1234 5678 9012 3456';
     });
 
+
     cardName.addEventListener('input', (e)=>{
       elName.textContent = e.target.value.toUpperCase() || 'NOMBRE APELLIDO';
     });
+
 
     cardExpiry.addEventListener('input', (e)=>{
       // formatea MM/AA
@@ -136,16 +161,19 @@
       elExpiry.textContent = v || '08/24';
     });
 
+
     function updateVisibility(){
       const fields = document.getElementById('card-fields');
       const qrSmall = document.getElementById('yape-qr');
       const yapePanel = document.getElementById('yape-panel');
       const grid = document.getElementById('payment-grid');
 
+
       // Mostrar u ocultar campos de tarjeta
       fields.style.display = method.value === 'card' ? 'block' : 'none';
       // Mostrar u ocultar el preview de la tarjeta
       if(cardPreview) cardPreview.style.display = method.value === 'yape' ? 'none' : 'block';
+
 
       // Mostrar panel grande de Yape y ocultar el grid principal cuando sea Yape
       if(yapePanel){
@@ -155,17 +183,21 @@
         grid.style.display = method.value === 'yape' ? 'none' : 'grid';
       }
 
+
       // Ocultar QR pequeño si estamos usando el panel grande
       if(qrSmall) qrSmall.style.display = method.value === 'yape' ? 'none' : 'none';
     }
+
 
     method.addEventListener('change', updateVisibility);
     // Inicializar visibilidad al cargar
     updateVisibility();
 
+
     // Handlers para botones del panel Yape
     const confirmYape = document.getElementById('confirm-yape');
     const cancelYape = document.getElementById('cancel-yape');
+
 
     if(confirmYape){
       confirmYape.addEventListener('click', ()=>{
@@ -174,6 +206,7 @@
       });
     }
 
+
     if(cancelYape){
       cancelYape.addEventListener('click', ()=>{
         // Simula volver: seleccionar tarjeta
@@ -181,6 +214,7 @@
         updateVisibility();
       });
     }
+
 
     form.addEventListener('submit', (e)=>{
       e.preventDefault();
@@ -192,6 +226,7 @@
         }
       }
 
+
       // Simulación de pago
       alert('Pago simulado: Gracias por tu compra.');
       // aquí podrías redirigir a /gracias o procesar el pago real
@@ -199,10 +234,15 @@
   })();
 </script>
 
+
 <!-- QR real para Yape/Plin: solo QR + número breve -->
 <div id="yape-qr" class="max-w-sm mx-auto mt-6 p-4 bg-white rounded-xl shadow-md text-center" style="display:none">
   <img src="{{ url_for('static', filename='image/qr.jpg') }}" alt="QR Yape" class="mx-auto w-44 h-44 object-contain" />
   <p class="mt-3 text-sm text-gray-700">También puedes pagar enviando al número: <strong>+51 987 654 321</strong></p>
 </div>
 
+
 {% endblock %}
+
+
+

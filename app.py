@@ -1,86 +1,59 @@
 from flask import Flask, render_template, url_for
+import os
 from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
-
-# Seguridad: cabeceras que ayudan a mitigar ataques comunes (sin crear archivos nuevos)
-@app.after_request
-def set_security_headers(response):
-    # Protecciones basicas recomendadas
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
-    response.headers['Referrer-Policy'] = 'no-referrer-when-downgrade'
-    response.headers['X-XSS-Protection'] = '1; mode=block'
-    return response
-
-# --- PROCESADOR DE CONTEXTO ---
-@app.context_processor
-def inject_globals():
-    """
-    Inyecta la función 'now' para acceder a la fecha y hora actuales en Jinja.
-    """
-    return {
-        'now': datetime.utcnow
-    }
-
-# --- RUTAS PRINCIPALES ---
-
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html')
+    ruta = os.path.join(app.static_folder, 'image')
+    productos = [
+        url_for('static', filename=f'image/{img}')
+        for img in os.listdir(ruta)
+        if img.lower().endswith(('.jpg', '.jpeg', '.png')) and 'fachada' not in img.lower()
+    ]
+    return render_template("index.html", productos=productos, year=datetime.now().year)
 
-# RUTA: Todas las carnes (Vista combinada)
-@app.route('/todas-las-carnes')
-def productos_carnes():
-    return render_template('productos_carnes.html')
+@app.route("/carrito")
+def carrito():
+    return render_template("carrito.html", year=datetime.now().year)
 
-# RUTA PARA UTENSILIOS (¡CORREGIDO! Apunta al nuevo nombre del archivo)
-@app.route('/todos-para-asar')
-def utensilios():
-    return render_template('todos_para_asar.html') 
-
-@app.route('/categorias')
-def categorias():
-    return render_template('categorias.html')
-
-@app.route('/acerca-de')
-def acerca_de():
-    return render_template('acerca_de.html')
-
-@app.route('/login')
+@app.route("/login")
 def login():
-    return render_template('login.html')
+    return render_template("login.html", year=datetime.now().year)
 
-@app.route('/pago')
-def pago():
-    return render_template('pago.html')
+@app.route("/pagos")
+def pagos():
+    return render_template("pagos.html", year=datetime.now().year)
 
+@app.route("/productos")
+def productos():
+    lista_productos = [
+        {
+            "nombre": "Lomo Fino",
+            "precio": 38.90,
+            "descripcion": "Carne tierna ideal para parrillas.",
+            "imagen": url_for('static', filename='image/lomo_fino.jpg')
+        },
+        {
+            "nombre": "Asado de Tira",
+            "precio": 28.50,
+            "descripcion": "Perfecto para guisos o estofados.",
+            "imagen": url_for('static', filename='image/asado_tira.jpg')
+        },
+        {
+            "nombre": "Bistec de Res",
+            "precio": 25.00,
+            "descripcion": "Corte clásico para plancha o sartén.",
+            "imagen": url_for('static', filename='image/bistec_res.jpg')
+        }
+    ]
+    return render_template("producto.html", productos=lista_productos, year=datetime.now().year)
 
-# Pequeño endpoint para comprobar que la app está viva (útil para debugging/local)
-@app.route('/health')
-def health():
-    return 'ok', 200
+@app.route("/register", methods=["POST"])
+def register():
+    # Aquí puedes procesar el formulario de registro más adelante
+    return "Registro recibido"
 
-
-# --- RUTAS DE CATEGORÍA ESPECÍFICAS ---
-
-@app.route('/carne-de-res')
-def categoria_res():
-    # CORRECCIÓN FINAL: Apunta a 'res.html'
-    return render_template('res.html')
-
-@app.route('/carne-de-pollo')
-def categoria_pollo():
-    # Apunta a 'pollo.html'
-    return render_template('pollo.html')
-
-@app.route('/carne-de-cerdo')
-def categoria_cerdo():
-    # Apunta a 'cerdo.html'
-    return render_template('cerdo.html')
-
-
-if __name__ == '__main__':
-    # Mantener debug=True solo para desarrollo local
+if __name__ == "__main__":
     app.run(debug=True)
